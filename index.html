@@ -1,0 +1,606 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>House of Hebron · His Word for every day</title>
+  <meta name="description" content="Bible verse Promise Cards, bookmarks, desk calendars and framed word boards, each with a watercolour painting. Order on WhatsApp. Special prices for churches.">
+  <meta property="og:title" content="House of Hebron · His Word for every day">
+  <meta property="og:description" content="Bible verse cards, bookmarks, calendars and word boards with watercolour paintings. Order on WhatsApp.">
+  <!-- link preview in WhatsApp/Messages: the open Bible + logo (images/share.jpg, 1200 x 630), not the old meadow -->
+  <meta property="og:image" content="https://thehebronhouse.com/images/share.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="House of Hebron">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:url" content="https://thehebronhouse.com/">
+  <link rel="icon" type="image/png" href="images/tree-512.png">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #F7F2EA;
+      --card: #FFFDF9;
+      --ink: #2C2A26;
+      --muted: #6B665D;
+      --sage: #7D8C6E;
+      --sage-dark: #5E6B52;
+      --blush: #E9CFC8;
+      --line: #E4DCCF;
+      --whatsapp: #1F8F55;
+      --edge: clamp(20px, 5vw, 72px);   /* side space of the header and the big verse */
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+    body {
+      margin: 0; background: var(--paper); color: var(--ink);
+      font: 17px/1.6 "Source Sans 3", system-ui, sans-serif;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; }
+    h1, h2, h3 { font-family: "Cormorant Garamond", Georgia, serif; font-weight: 500; line-height: 1.15; margin: 0; }
+    .wrap { max-width: 1160px; margin: 0 auto; padding: 0 20px; }
+
+    /* header */
+    header {
+      position: sticky; top: 0; z-index: 10; background: rgba(247, 242, 234, .94);
+      backdrop-filter: blur(6px); border-bottom: 1px solid var(--line);
+    }
+    /* header runs the full width: logo at the left edge, menu at the right (owner, 2 Nov 2026) */
+    .header-row { display: flex; align-items: center; justify-content: space-between; height: 72px; gap: 16px; max-width: none; padding: 0 var(--edge); }
+    .logo img { height: 50px; width: auto; }
+    .header-row nav { display: flex; gap: 22px; font-size: 15px; letter-spacing: .04em; }
+    .header-row nav a { text-decoration: none; color: var(--muted); }
+    .header-row nav a:hover { color: var(--ink); }
+
+    /* buttons */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; border-radius: 999px;
+      background: var(--whatsapp); color: #fff; text-decoration: none; font-weight: 600; font-size: 16px;
+      border: 1px solid var(--whatsapp); transition: filter .15s;
+    }
+    .btn:hover { filter: brightness(1.08); }
+    .btn-outline { background: transparent; color: var(--ink); border-color: var(--ink); }
+    .btn-small { padding: 9px 16px; font-size: 15px; }
+    .btn svg { width: 18px; height: 18px; fill: currentColor; flex: none; }
+
+    /* hero */
+    .hero {
+      position: relative; min-height: 78vh; display: flex; align-items: flex-start; justify-content: center;
+      text-align: center; background: url("images/hero-meadow.jpg") center 70% / cover no-repeat;
+    }
+    .hero::after {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(250, 246, 238, .55), rgba(250, 246, 238, 0) 55%);
+    }
+    .hero-inner { position: relative; z-index: 1; padding: 11vh 20px 40px; max-width: 760px; }
+    .hero h1 { font-size: clamp(44px, 7vw, 76px); font-style: italic; font-weight: 400; }
+    .hero p { font-size: 19px; margin: 18px auto 30px; max-width: 560px; }
+    .hero-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .offer {
+      display: inline-block; margin-bottom: 20px; padding: 5px 14px; border-radius: 999px;
+      background: rgba(255, 253, 249, .8); font-size: 14px; letter-spacing: .06em; text-transform: uppercase;
+    }
+
+    /* categories */
+    .category-nav {
+      display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; padding: 40px 20px 0;
+    }
+    .category-nav a {
+      text-decoration: none; padding: 8px 18px; border: 1px solid var(--line); border-radius: 999px;
+      background: var(--card); font-size: 15px;
+    }
+    .category-nav a:hover { border-color: var(--sage); }
+    .category { padding: 56px 0 8px; }
+    .category-head { text-align: center; margin-bottom: 28px; }
+    .category-head h2 { font-size: 40px; }
+    .category-head p { color: var(--muted); margin: 6px 0 0; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 24px; }
+    .product {
+      background: var(--card); border: 1px solid var(--line); border-radius: 14px; overflow: hidden;
+      display: flex; flex-direction: column;
+    }
+    .product img { aspect-ratio: 1; object-fit: cover; width: 100%; height: auto; }
+    .product-body { padding: 16px 18px 20px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+    .product h3 { font-size: 23px; }
+    .price { margin: 0; font-weight: 600; font-size: 18px; }
+    .price s { color: var(--muted); font-weight: 400; font-size: 15px; margin-left: 4px; }
+    .desc { margin: 0 0 10px; color: var(--muted); font-size: 15px; flex: 1; }
+    .product .btn { align-self: flex-start; margin-top: auto; }
+
+    /* info bands */
+    .band { padding: 80px 0; }
+    .band-alt { background: var(--card); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .band h2 { font-size: 42px; text-align: center; }
+    .band .lead { text-align: center; color: var(--muted); max-width: 640px; margin: 12px auto 40px; }
+    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 28px; text-align: center; }
+    .step-num {
+      font-family: "Cormorant Garamond", serif; font-size: 34px; color: var(--sage);
+      width: 58px; height: 58px; border: 1px solid var(--sage); border-radius: 50%;
+      display: grid; place-items: center; margin: 0 auto 12px;
+    }
+    .step h3 { font-size: 24px; margin-bottom: 6px; }
+    .step p { margin: 0; color: var(--muted); }
+    .churches { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+    .churches h2 { text-align: left; }
+    .churches ul { padding-left: 20px; margin: 18px 0 28px; }
+    .churches li { margin-bottom: 6px; }
+    .churches img, .sheets img { border-radius: 14px; border: 1px solid var(--line); }
+    .sheet-main img { box-shadow: 0 10px 30px rgba(60, 40, 30, .12); }
+    .sheets-lead { text-align: center; color: var(--muted); margin: 48px 0 18px; }
+    .sheets { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 900px; margin: 0 auto; }
+    .sheets a { text-decoration: none; text-align: center; color: var(--muted); font-size: 15px; }
+    .sheets span { display: block; margin-top: 8px; }
+    @media (max-width: 760px) { .sheets { gap: 10px; } .sheets span { font-size: 13px; } }
+    .center { text-align: center; }
+    .about { max-width: 680px; margin: 0 auto; text-align: center; }
+    .about img { width: 110px; margin: 0 auto 18px; }
+    .about p { color: var(--muted); }
+
+    footer { padding: 40px 0 90px; text-align: center; color: var(--muted); font-size: 15px; }
+    footer .tagline { font-family: "Cormorant Garamond", serif; font-style: italic; font-size: 24px; color: var(--ink); }
+    footer a { text-decoration: none; margin: 0 10px; }
+    footer a:hover { text-decoration: underline; }
+
+    .float-wa {
+      position: fixed; right: 18px; bottom: 84px; z-index: 20;   /* above Netlify's badge */ width: 58px; height: 58px; border-radius: 50%;
+      background: var(--whatsapp); display: grid; place-items: center; box-shadow: 0 6px 18px rgba(0, 0, 0, .18);
+    }
+    .float-wa svg { width: 30px; height: 30px; fill: #fff; }
+
+    @media (max-width: 760px) {
+      body { font-size: 16px; }
+      .header-row nav { display: none; }
+      .logo img { height: 42px; }
+      .hero { min-height: 72vh; }
+      .hero-inner { padding-top: 8vh; }
+      .hero p { font-size: 17px; }
+      .category-head h2, .band h2 { font-size: 34px; }
+      .grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+      .product-body { padding: 12px 12px 14px; }
+      .product h3 { font-size: 19px; }
+      .desc { display: none; }
+      .product .btn { align-self: stretch; justify-content: center; padding: 8px 10px; font-size: 14px; }
+      .product .btn .long { display: none; }
+      .churches { grid-template-columns: 1fr; gap: 28px; }
+      .band { padding: 60px 0; }
+    }
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none}.logo-e img{height:50px;width:auto}.logo-e .words{display:flex;flex-direction:column;align-items:flex-start;line-height:1.1;color:var(--ink)}.logo-e .words span{font-family:"Cormorant Garamond",serif;font-size:24px;font-weight:600;letter-spacing:.22em}.logo-e small{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:15px;color:var(--sage-dark);margin-top:2px}@media (max-width:760px){.logo-e img{height:40px}.logo-e .words span{font-size:17px;letter-spacing:.14em}.logo-e small{font-size:13px}}.hero-bible{background-image:url("images/hero-bible.jpg");background-position:65% center;align-items:center;justify-content:flex-start;text-align:left}.hero-bible::after{background:linear-gradient(90deg,rgba(30,22,14,.78),rgba(30,22,14,.45) 45%,rgba(30,22,14,0) 75%)}.hero-bible .ref{display:block;margin-top:10px;font-size:13px;letter-spacing:.22em;text-transform:uppercase;opacity:.85}.hero-bible .hero-inner{padding:40px var(--edge);color:#fff;max-width:none;width:100%;margin:0}.hero-bible h1{max-width:820px}.hero-bible p{margin-left:0;max-width:520px}.hero-bible .hero-buttons{justify-content:flex-start}.hero-bible .offer{background:rgba(255,255,255,.16);color:#fff;border:1px solid rgba(255,255,255,.4)}.hero-bible .btn-outline{color:#fff;border-color:#fff}@media (max-width:760px){.hero-bible{background-position:70% center;text-align:center;justify-content:center}.hero-bible::after{background:rgba(30,22,14,.55)}.hero-bible .hero-buttons{justify-content:center}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap header-row">
+      <a class="logo logo-e" href="#top" aria-label="House of Hebron, home"><img src="images/tree-clean.svg" alt="" width="52" height="47"><span class="words"><span>HOUSE OF HEBRON</span><small>His Word for every day</small></span></a>
+      <nav>
+        <a href="#shop">Shop</a>
+        <a href="#how-to-order">How to order</a>
+        <a href="#churches">For churches</a>
+        <a href="#about">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+<section class="hero hero-bible"><div class="hero-inner"><span class="offer">Launch prices till 31 December</span>
+        <h1>Thy word is a lamp<br> unto my feet</h1>
+        <span class="ref">Psalm 119:105</span>
+        <p>Bible verse cards, bookmarks, calendars and word boards, each with a watercolour painting.</p>
+        <div class="hero-buttons">
+          <a class="btn btn-outline" href="#shop">See the collection</a>
+          <a class="btn" href="https://wa.me/919148123001?text=Hi%21%20I%20found%20you%20on%20thehebronhouse.com." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.3.8 3.2.7a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.5-.3Z"/></svg>Order on WhatsApp</a>
+        </div></div></section>
+
+    <div id="shop" class="wrap">
+      <nav class="category-nav" aria-label="Product categories">
+        <a href="#cards">Promise Cards</a>
+        <a href="#bookmarks">Bookmarks</a>
+        <a href="#calendar">Desk calendar 2027</a>
+        <a href="#boards">Word boards</a>
+        <a href="#gifts">Gift sets</a>
+      </nav>
+
+    <section class="category" id="cards">
+      <div class="category-head">
+        <h2>Promise Cards</h2>
+        <p>Packs of 10 cards, each with a verse and a watercolour painting.</p>
+      </div>
+      <div class="grid">
+      <article class="product">
+        <img src="images/products/01-promise-cards-v2.jpg" alt="Promise Cards" loading="lazy" width="720" height="720">
+        <div class="product-body">
+          <h3>Promise Cards</h3>
+          <p class="price">₹59 <s>₹99</s></p>
+          <p class="desc">A pack of 10 cards, each with one of God&#x27;s promises and a colourful watercolour painting.</p>
+          <a class="btn btn-small" href="https://wa.me/919148123001?text=Hi%21%20I%27d%20like%20to%20order%3A%20Promise%20Cards%20%28%E2%82%B959%29" target="_blank" rel="noopener">Order<span class="long"> on WhatsApp</span></a>
+        </div>
+      </article>
+      <article class="product">
+        <img src="images/products/02-promise-cards-tamil-v2.jpg" alt="Promise Cards, Tamil" loading="lazy" width="720" height="720">
+        <div class="product-body">
+          <h3>Promise Cards, Tamil</h3>
+          <p class="price">₹59 <s>₹99</s></p>
+          <p class="desc">A pack of 10 cards in Tamil, each with one of God&#x27;s promises and a colourful watercolour painting.</p>
+          <a class="btn btn-small" href="https://wa.me/919148123001?text=Hi%21%20I%27d%20like%20to%20order%3A%20Promise%20Cards%2C%20Tamil%20%28%E2%82%B959%29" target="_blank" rel="noopener">Order<span class="long"> on WhatsApp</span></a>
+        </div>
+      </article>
+      <article class="product">
+        <img src="images/products/03-promise-cards-classic.jpg" alt="Promise Cards, Classic" loading="lazy" width="720" height="720">
+        <div class="product-body">
+          <h3>Promise Cards, Classic</h3>
+          <p class="price">₹59 <s>₹99</s></p>
+          <p class="desc">A pack of 10 cards, each with one of God&#x27;s promises and a soft watercolour painting on white.</p>
+          <a class="btn btn-small" href="https://wa.me/919148123001?text=Hi%21%20I%27d%20like%20to%20order%3A%20Promise%20Cards%2C%20Classic%20%28%E2%82%B959%29" target="_blank" rel="noopener">Order<span class="long"> on WhatsApp</span></a>
+        </div>
+      </article>
+      <article class="product">
+        <img src="images/products/04-peace-card-pack-classic.jpg" alt="Peace card pack, Classic" loading="lazy" width="720" height="720">
+        <div class="product-body">
+          <h3>Peace card pack, Classic</h3>
+          <p class="price">₹59 <s>₹99</s></p>
+          <p class="desc">A pack of 10 cards on peace, each with a verse and a soft watercolour painting on white.</p>
+          <a class="btn btn-small" href="https://wa.me/919148123001?text=Hi%21%20I%27d%20like%20to%20order%3A%20Peace%20card%20pack%2C%20Classic%20%28%E2%82%B959%29" target="_blank" rel="noopener">Order<span class="long"> on WhatsApp</span></a>
+        </div>
+      </article>
+      <article class="product">
+        <img src="images/products/05-love-card-pack-classic.jpg" alt="Love card pack, Classic" loading="lazy" width="720" height="720">
+        <div class="product-body">
+          <h3>Love card pack, Classic</h3>
+          <p class="price">₹59 <s>₹99</s></p>
+          <p class="desc">A pack of 10 cards on love, each with a verse and a soft watercolour painting on white.</p>
+          <a class="btn btn-small" href="https://wa.me/919148123001?text=Hi%21%20I%27d%20like%20to%20order%3A%20Love%20card%20pack%2C%20Classic%20%28%E2%82%B959%29" target="_blank" rel="noopener">Order<span class="long"> on WhatsApp</span></a>
+        </div>
+      </article>
+      <article class="product">
+        <img src="images/products/06-trust-card-pack-classic.jpg" alt="Trust card pack, Classic" loading="lazy" width="720" height="720">
+        <div class="product-body">
+          <h3>Trust card pack, Classic</h3>
+          <p class="price">₹59 <s>₹99</s></p>
+          <p class="desc">A pack of 10 cards on trust, each with a verse and a soft watercolour painting on white.</p>
+          <a class="btn btn-small" href="https://wa.me/919148123001?text=Hi%21%20I%27d%20like%20to%20order%3A%20Trust%20card%20pack%2C%20Classic%20%28%E2%82%B959%29" target="_blank" rel="noopener">Order<span class="long"> on WhatsApp</span></a>
+        </div>
+      </article>
+      <article class="product">
+        <img src="images/products/07-joy-card-pack-classic.jpg" alt="Joy card pack, Classic" loading="lazy" width="720" height="720">
+        <div class="product-body">
+          <h3>Joy card pack, Classic</h3>
+          <p class="price">₹59 <s>₹99</s></p>
+          <p class="desc">A pack of 10 cards on joy, each with a verse and a soft watercolour painting on white.</p>
+          <a class="btn btn-small" href="https://wa.me/919148123001?text=Hi%21%20I%27d%20like%20to%20order%3A%20Joy%20card%20pack%2C%20Classic%20%28%E2%82%B959%29" target="_blank" rel="noopener">Order<span class="long"> on WhatsApp</span></a>
+        </div>
+      </article>
+      <article class="product">
+        <img src="images/products/08-courage-card-pack-classic.jpg" alt="Courage card pack, Classic" loading="lazy" width="720" height="720">
+        <div class="product-body">
+          <h3>Courage card pack, Classic</h3>
+          <p class="price">₹59 <s>₹99</s></p>
+          <p class="desc">A pack of 10 cards on courage, each with a verse and a soft watercolour painting on white.</p>
+          <a class="btn btn-small" href="https://wa.me/919148123001?text=Hi%21%20I%27d%20like%20to%20order%3A%20Courage%20card%20pack%2C%20Classic%20%28%E2%82%B959%29" target="_blank" rel="noopener">Order<span class="long"> on WhatsApp</span></a>
+        </div>
+      </article>
+      <article class="product">
+        <img src="images/products/09-grace-card-pack-classic.jpg" alt="Grace card pack, Classic" loading="lazy" width="720" height="720">
+        <div class="product-body">
+          <h3>Grace card pack, Classic</h3>
+          <p class="price">₹59 <s>₹99</s></p>
+          <p class="desc">A pack of 10 cards on grace, each with a verse and a soft watercolour painting on white.</p>
+          <a class="btn btn-small" href="https://wa.me/919148123001?text=Hi%21%20I%27d%20like%20to%20order%3A%20Grace%20card%20pack%2C%20Classic%20%28%E2%82%B959%29" target="_blank" rel="noopener">Order<span class="long"> on WhatsApp</span></a>
+        </div>
+      </article>
+      <article class="product">
+        <img src="images/products/10-faith-card-pack-classic.jpg" alt="Faith card pack, Classic" loading="lazy" width="720" height="720">
+        <div class="product-body">
+          <h3>Faith card pack, Classic</h3>
+          <p class="price">₹59 <s>₹99</s></p>
+          <p class="desc">A pack of 10 cards on faith, each with a verse and a soft watercolour painting on white.</p>
+          <a class="btn btn-small" href="https://wa.me/919148123001?text=Hi%21%20I%27d%20like%20to%20order%3A%20Faith%20card%20pack%2C%20Classic%20%28%E2%82%B959%29" target="_blank" rel="noopener">Order<span class="long"> on WhatsApp</span></a>
+        </div>
+      </article>
+      <article class="product">
+        <img src="images/products/11-christmas-cards.jpg" alt="Christmas cards" loading="lazy" width="720" height="720">
+        <div class="product-body">
+          <h3>Christmas cards</h3>
+          <p class="price">₹59 <s>₹99</s></p>
+          <p class="desc">A pack of 10 Christmas cards, each with a Christmas verse and a watercolour painting; &quot;A blessed Christmas and a happy New Year&quot; on the back, with To and From lines.</p>
+          <a class="btn btn-small" href="https://wa.me/919148123001?text=Hi%21%20I%27d%20like%20to%20order%3A%20Christmas%20cards%20%28%E2%82%B959%29" target="_blank" rel="noopener">Order<span class="long"> on WhatsApp</span></a>
+        </div>
+      </article>
+      </div>
+    </section>
+
+    <section class="category" id="bookmarks">
+      <div class="category-head">
+        <h2>Bookmarks</h2>
+        <p>Short phrases on painted bookmarks, each with a sage tassel.</p>
+      </div>
+      <div class="grid">
+      <article class="product">
+        <img src="images/products/12-not-i-but-christ-in-me-bookmark.jpg" alt="Not I, but Christ in me bookmark" loading="lazy" width="720" height="720">
+        <div class="product-body">
+          <h3>Not I, but Christ in me bookmark</h3>
+          <p class="price">₹29 <s>₹39</s></p>
+          <p class="desc">A bookmark with a watercolour painting edge to edge and the words &quot;Not I, but Christ in me&quot;, with a sage tassel.</p>
+          <a class="btn btn-small" href="https://wa.me/919148123001?text=Hi%21%20I%27d%20like%20to%20order%3A%20Not%20I%2C%20but%20Christ%20in%20me%20bookmark%20%28%E2%82%B929%29" target="_blank" rel="noopener">Order<span class="long"> on WhatsApp</span></a>
+        </div>
+      </article>
+      <article class="product">
+        <img src="images/products/13-less-of-me-more-of-jesus-bookmark.jpg" alt="Less of me, more of Jesus bookmark" loading="lazy" width="720" height="720">
+        <div class="product-body">
+          <h3>Less of me, more of Jesus bookmark</h3>
+          <p class="price">₹29 <s>₹39</s></p>
+          <p class="desc">A bookmark with a watercolour painting edge to edge and the words &quot;Less of me, more of Jesus&quot;, with a sage tassel.</p>
+          <a class="btn btn-small" href="https://wa.me/919148123001?text=Hi%21%20I%27d%20like%20to%20order%3A%20Less%20of%20me%2C%20more%20of%20Jesus%20bookmark%20%28%E2%82%B929%29" target="_blank" rel="noopener">Order<span class="long"> on WhatsApp</span></a>
+        </div>
+      </article>
+      <article class="product">
+        <img src="images/products/14-grace-upon-grace-bookmark.jpg" alt="Grace upon grace bookmark" loading="lazy" width="720" height="720">
+        <div class="product-body">
+          <h3>Grace upon grace bookmark</h3>
+          <p class="price">₹29 <s>₹39</s></p>
+          <p class="desc">A bookmark with a watercolour painting edge to edge and the words &quot;Grace upon grace&quot;, with a sage tassel.</p>
+          <a class="btn btn-small" href="https://wa.me/919148123001?text=Hi%21%20I%27d%20like%20to%20order%3A%20Grace%20upon%20grace%20bookmark%20%28%E2%82%B929%29" target="_blank" rel="noopener">Order<span class="long"> on WhatsApp</span></a>
+        </div>
+      </article>
+      <article class="product">
+        <img src="images/products/15-to-live-is-christ-bookmark.jpg" alt="To live is Christ bookmark" loading="lazy" width="720" height="720">
+        <div class="product-body">
+          <h3>To live is Christ bookmark</h3>
+          <p class="price">₹29 <s>₹39</s></p>
+          <p class="desc">A bookmark with a watercolour painting edge to edge and the words &quot;To live is Christ&quot;, with a sage tassel.</p>
+          <a class="btn btn-small" href="https://wa.me/919148123001?text=Hi%21%20I%27d%20like%20to%20order%3A%20To%20live%20is%20Christ%20bookmark%20%28%E2%82%B929%29" target="_blank" rel="noopener">Order<span class="long"> on WhatsApp</span></a>
+        </div>
+      </article>
+      <article class="product">
+        <img src="images/products/16-not-my-will-but-yours-bookmark.jpg" alt="Not my will, but Yours bookmark" loading="lazy" width="720" height="720">
+        <div class="product-body">
+          <h3>Not my will, but Yours bookmark</h3>
+          <p class="price">₹29 <s>₹39</s></p>
+          <p class="desc">A bookmark with a watercolour painting edge to edge and the words &quot;Not my will, but Yours&quot;, with a sage tassel.</p>
+          <a class="btn btn-small" href="https://wa.me/919148123001?text=Hi%21%20I%27d%20like%20to%20order%3A%20Not%20my%20will%2C%20but%20Yours%20bookmark%20%28%E2%82%B929%29" target="_blank" rel="noopener">Order<span class="long"> on WhatsApp</span></a>
+        </div>
+      </article>
+      <article class="product">
+        <img src="images/products/17-set-of-5-bookmarks.jpg" alt="Set of 5 bookmarks" loading="lazy" width="720" height="720">
+        <div class="product-body">
+          <h3>Set of 5 bookmarks</h3>
+          <p class="price">₹119 <s>₹169</s></p>
+          <p class="desc">All five phrase bookmarks, each with a watercolour painting and a sage tassel.</p>
+          <a class="btn btn-small" href="https://wa.me/919148123001?text=Hi%21%20I%27d%20like%20to%20order%3A%20Set%20of%205%20bookmarks%20%28%E2%82%B9119%29" target="_blank" rel="noopener">Order<span class="long"> on WhatsApp</span></a>
+        </div>
+      </article>
+      </div>
+    </section>
+
+    <section class="category" id="calendar">
+      <div class="category-head">
+        <h2>Desk calendar 2027</h2>
+        <p>A painting and a verse for every month.</p>
+      </div>
+      <div class="grid">
+      <article class="product">
+        <img src="images/products/20-desk-calendar-2027.jpg" alt="Desk calendar 2027" loading="lazy" width="720" height="720">
+        <div class="product-body">
+          <h3>Desk calendar 2027</h3>
+          <p class="price">₹249 <s>₹349</s></p>
+          <p class="desc">Desk calendar on a stand, wiro bound: a watercolour painting and a verse for every month, with holidays marked.</p>
+          <a class="btn btn-small" href="https://wa.me/919148123001?text=Hi%21%20I%27d%20like%20to%20order%3A%20Desk%20calendar%202027%20%28%E2%82%B9249%29" target="_blank" rel="noopener">Order<span class="long"> on WhatsApp</span></a>
+        </div>
+      </article>
+      </div>
+    </section>
+
+    <section class="category" id="boards">
+      <div class="category-head">
+        <h2>Word boards</h2>
+        <p>A4 framed verses in natural wood, from the Sage and Blush collections.</p>
+      </div>
+      <div class="grid">
+      <article class="product">
+        <img src="images/products/21-as-for-me-and-my-house-word-board.jpg" alt="As for me and my house word board" loading="lazy" width="720" height="720">
+        <div class="product-body">
+          <h3>As for me and my house word board</h3>
+          <p class="price">₹349 <s>₹449</s></p>
+          <p class="desc">A4 word board in a natural-wood frame, from the Sage collection: Joshua 24:15, with painted sage stripes and an oval panel.</p>
+          <a class="btn btn-small" href="https://wa.me/919148123001?text=Hi%21%20I%27d%20like%20to%20order%3A%20As%20for%20me%20and%20my%20house%20word%20board%20%28%E2%82%B9349%29" target="_blank" rel="noopener">Order<span class="long"> on WhatsApp</span></a>
+        </div>
+      </article>
+      <article class="product">
+        <img src="images/products/22-the-lord-bless-thee-word-board.jpg" alt="The Lord bless thee word board" loading="lazy" width="720" height="720">
+        <div class="product-body">
+          <h3>The Lord bless thee word board</h3>
+          <p class="price">₹349 <s>₹449</s></p>
+          <p class="desc">A4 word board in a natural-wood frame, from the Sage collection: Numbers 6:24, with our painted olive branch.</p>
+          <a class="btn btn-small" href="https://wa.me/919148123001?text=Hi%21%20I%27d%20like%20to%20order%3A%20The%20Lord%20bless%20thee%20word%20board%20%28%E2%82%B9349%29" target="_blank" rel="noopener">Order<span class="long"> on WhatsApp</span></a>
+        </div>
+      </article>
+      <article class="product">
+        <img src="images/products/23-rooted-and-grounded-in-love-word-board.jpg" alt="Rooted and grounded in love word board" loading="lazy" width="720" height="720">
+        <div class="product-body">
+          <h3>Rooted and grounded in love word board</h3>
+          <p class="price">₹349 <s>₹449</s></p>
+          <p class="desc">A4 word board in a natural-wood frame, from the Sage collection: Ephesians 3:17, with painted olive sprigs and an arch.</p>
+          <a class="btn btn-small" href="https://wa.me/919148123001?text=Hi%21%20I%27d%20like%20to%20order%3A%20Rooted%20and%20grounded%20in%20love%20word%20board%20%28%E2%82%B9349%29" target="_blank" rel="noopener">Order<span class="long"> on WhatsApp</span></a>
+        </div>
+      </article>
+      <article class="product">
+        <img src="images/products/24-be-still-word-board.jpg" alt="Be still word board" loading="lazy" width="720" height="720">
+        <div class="product-body">
+          <h3>Be still word board</h3>
+          <p class="price">₹349 <s>₹449</s></p>
+          <p class="desc">A4 word board in a natural-wood frame, from the Sage collection: Psalm 46:10, with painted sage gingham.</p>
+          <a class="btn btn-small" href="https://wa.me/919148123001?text=Hi%21%20I%27d%20like%20to%20order%3A%20Be%20still%20word%20board%20%28%E2%82%B9349%29" target="_blank" rel="noopener">Order<span class="long"> on WhatsApp</span></a>
+        </div>
+      </article>
+      <article class="product">
+        <img src="images/products/25-my-grace-is-sufficient-for-thee-word-board.jpg" alt="My grace is sufficient for thee word board" loading="lazy" width="720" height="720">
+        <div class="product-body">
+          <h3>My grace is sufficient for thee word board</h3>
+          <p class="price">₹349 <s>₹449</s></p>
+          <p class="desc">A4 word board in a natural-wood frame, from the Sage collection: 2 Corinthians 12:9, with a sage watercolour wash and cream lettering.</p>
+          <a class="btn btn-small" href="https://wa.me/919148123001?text=Hi%21%20I%27d%20like%20to%20order%3A%20My%20grace%20is%20sufficient%20for%20thee%20word%20board%20%28%E2%82%B9349%29" target="_blank" rel="noopener">Order<span class="long"> on WhatsApp</span></a>
+        </div>
+      </article>
+      <article class="product">
+        <img src="images/products/26-his-banner-over-me-was-love-word-board.jpg" alt="His banner over me was love word board" loading="lazy" width="720" height="720">
+        <div class="product-body">
+          <h3>His banner over me was love word board</h3>
+          <p class="price">₹349 <s>₹449</s></p>
+          <p class="desc">A4 word board in a natural-wood frame, from the Blush collection: Song of Solomon 2:4, with painted blush stripes and an arch.</p>
+          <a class="btn btn-small" href="https://wa.me/919148123001?text=Hi%21%20I%27d%20like%20to%20order%3A%20His%20banner%20over%20me%20was%20love%20word%20board%20%28%E2%82%B9349%29" target="_blank" rel="noopener">Order<span class="long"> on WhatsApp</span></a>
+        </div>
+      </article>
+      <article class="product">
+        <img src="images/products/27-his-mercies-are-new-every-morning-word-board.jpg" alt="His mercies are new every morning word board" loading="lazy" width="720" height="720">
+        <div class="product-body">
+          <h3>His mercies are new every morning word board</h3>
+          <p class="price">₹349 <s>₹449</s></p>
+          <p class="desc">A4 word board in a natural-wood frame, from the Blush collection: Lamentations 3:22-23, with our painted roses.</p>
+          <a class="btn btn-small" href="https://wa.me/919148123001?text=Hi%21%20I%27d%20like%20to%20order%3A%20His%20mercies%20are%20new%20every%20morning%20word%20board%20%28%E2%82%B9349%29" target="_blank" rel="noopener">Order<span class="long"> on WhatsApp</span></a>
+        </div>
+      </article>
+      <article class="product">
+        <img src="images/products/28-many-waters-cannot-quench-love-word-board.jpg" alt="Many waters cannot quench love word board" loading="lazy" width="720" height="720">
+        <div class="product-body">
+          <h3>Many waters cannot quench love word board</h3>
+          <p class="price">₹349 <s>₹449</s></p>
+          <p class="desc">A4 word board in a natural-wood frame, from the Blush collection: Song of Solomon 8:7, with painted blush gingham and an oval panel.</p>
+          <a class="btn btn-small" href="https://wa.me/919148123001?text=Hi%21%20I%27d%20like%20to%20order%3A%20Many%20waters%20cannot%20quench%20love%20word%20board%20%28%E2%82%B9349%29" target="_blank" rel="noopener">Order<span class="long"> on WhatsApp</span></a>
+        </div>
+      </article>
+      <article class="product">
+        <img src="images/products/29-sage-collection-set-of-3.jpg" alt="Sage collection, set of 3" loading="lazy" width="720" height="720">
+        <div class="product-body">
+          <h3>Sage collection, set of 3</h3>
+          <p class="price">₹949 <s>₹1,347</s></p>
+          <p class="desc">Any three word boards from the Sage collection, A4, framed in natural wood.</p>
+          <a class="btn btn-small" href="https://wa.me/919148123001?text=Hi%21%20I%27d%20like%20to%20order%3A%20Sage%20collection%2C%20set%20of%203%20%28%E2%82%B9949%29" target="_blank" rel="noopener">Order<span class="long"> on WhatsApp</span></a>
+        </div>
+      </article>
+      <article class="product">
+        <img src="images/products/30-sage-collection-all-5.jpg" alt="Sage collection, all 5" loading="lazy" width="720" height="720">
+        <div class="product-body">
+          <h3>Sage collection, all 5</h3>
+          <p class="price">₹1,499 <s>₹2,245</s></p>
+          <p class="desc">All five Sage word boards, A4, framed in natural wood: a whole gallery wall.</p>
+          <a class="btn btn-small" href="https://wa.me/919148123001?text=Hi%21%20I%27d%20like%20to%20order%3A%20Sage%20collection%2C%20all%205%20%28%E2%82%B91%2C499%29" target="_blank" rel="noopener">Order<span class="long"> on WhatsApp</span></a>
+        </div>
+      </article>
+      <article class="product">
+        <img src="images/products/31-blush-collection-set-of-3.jpg" alt="Blush collection, set of 3" loading="lazy" width="720" height="720">
+        <div class="product-body">
+          <h3>Blush collection, set of 3</h3>
+          <p class="price">₹949 <s>₹1,347</s></p>
+          <p class="desc">All three Blush word boards, A4, framed in natural wood.</p>
+          <a class="btn btn-small" href="https://wa.me/919148123001?text=Hi%21%20I%27d%20like%20to%20order%3A%20Blush%20collection%2C%20set%20of%203%20%28%E2%82%B9949%29" target="_blank" rel="noopener">Order<span class="long"> on WhatsApp</span></a>
+        </div>
+      </article>
+      </div>
+    </section>
+
+    <section class="category" id="gifts">
+      <div class="category-head">
+        <h2>Gift sets</h2>
+        <p>Bundles that make a ready gift.</p>
+      </div>
+      <div class="grid">
+      <article class="product">
+        <img src="images/products/32-a-year-of-promises.jpg" alt="A Year of Promises" loading="lazy" width="720" height="720">
+        <div class="product-body">
+          <h3>A Year of Promises</h3>
+          <p class="price">₹349 <s>₹617</s></p>
+          <p class="desc">Desk calendar + the Promise Cards pack + the set of 5 bookmarks.</p>
+          <a class="btn btn-small" href="https://wa.me/919148123001?text=Hi%21%20I%27d%20like%20to%20order%3A%20A%20Year%20of%20Promises%20%28%E2%82%B9349%29" target="_blank" rel="noopener">Order<span class="long"> on WhatsApp</span></a>
+        </div>
+      </article>
+      <article class="product">
+        <img src="images/products/34-the-complete-collection.jpg" alt="The Complete Collection" loading="lazy" width="720" height="720">
+        <div class="product-body">
+          <h3>The Complete Collection</h3>
+          <p class="price">₹449 <s>₹961</s></p>
+          <p class="desc">All 8 card packs (Promise Cards + 7 themes) + the set of 5 bookmarks.</p>
+          <a class="btn btn-small" href="https://wa.me/919148123001?text=Hi%21%20I%27d%20like%20to%20order%3A%20The%20Complete%20Collection%20%28%E2%82%B9449%29" target="_blank" rel="noopener">Order<span class="long"> on WhatsApp</span></a>
+        </div>
+      </article>
+      </div>
+    </section>
+    </div>
+
+    <section class="band" id="how-to-order">
+      <div class="wrap">
+        <h2>How to order</h2>
+        <p class="lead">We take orders on WhatsApp, so you can ask anything before you buy.</p>
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">1</div>
+            <h3>Pick what you like</h3>
+            <p>Tap "Order on WhatsApp" under any item. Your message is ready to send.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <h3>We confirm</h3>
+            <p>We reply with the total, including shipping to your address.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <h3>Pay and receive</h3>
+            <p>Pay by UPI and we send your order to you.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="band band-alt" id="churches">
+      <div class="wrap churches">
+        <div>
+          <h2>For churches</h2>
+          <p>2027 calendars and Promise Cards with watercolour paintings and Scripture: a gift for your congregation, Sunday school or a special service.</p>
+          <ul>
+            <li>Special prices for bulk orders, delivered to your church</li>
+            <li>Your church's name on the back of every Promise Card</li>
+            <li>Your church's name on the calendars too, at extra cost</li>
+            <li>Promise Cards in English, Tamil and Kannada; Hindi and Telugu at extra cost</li>
+            <li>Order by 15 November</li>
+          </ul>
+          <a class="btn" href="https://wa.me/919148123001?text=Hi%21%20I%27d%20like%20to%20ask%20about%20a%20bulk%20order%20for%20our%20church." target="_blank" rel="noopener">Ask about a bulk order</a>
+        </div>
+        <a class="sheet-main" id="church-leaflet" href="images/church/00-all-products.jpg" target="_blank" rel="noopener"><img src="images/church/00-all-products.jpg" alt="Church leaflet: wall calendar, desk calendar and Promise Cards for 2027" loading="lazy" width="1080" height="1350"></a>
+      </div>
+      <div class="wrap">
+        <p class="sheets-lead">Our leaflets for churches (tap to see them larger)</p>
+        <div class="sheets">
+          <a href="images/church/01-wall-calendar.jpg" target="_blank" rel="noopener"><img src="images/church/01-wall-calendar.jpg" alt="Church leaflet: wall calendar" loading="lazy" width="1080" height="1350"><span>Wall calendar</span></a>
+          <a href="images/church/02-promise-cards.jpg" target="_blank" rel="noopener"><img src="images/church/02-promise-cards.jpg" alt="Church leaflet: Promise Cards with your church's name" loading="lazy" width="1080" height="1350"><span>Promise Cards</span></a>
+          <a href="images/church/06-desk-calendar.jpg" target="_blank" rel="noopener"><img src="images/church/06-desk-calendar.jpg" alt="Church leaflet: desk calendar" loading="lazy" width="1080" height="1350"><span>Desk calendar</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="band" id="about">
+      <div class="wrap about">
+        <img src="images/tree-512.png" alt="" width="110" height="110">
+        <h2>About House of Hebron</h2>
+        <p>House of Hebron is a small family business. We make Bible verse cards, bookmarks, calendars and word boards, each with a watercolour painting, so God's Word can sit on a desk, in a Bible or on a wall and be read every day.</p>
+        <p>Follow us on Instagram <a href="https://instagram.com/thehebronhouse" target="_blank" rel="noopener">@thehebronhouse</a>.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p class="tagline">His Word for every day</p>
+      <p>
+        <a href="https://wa.me/919148123001?text=Hi%21%20I%20found%20you%20on%20thehebronhouse.com." target="_blank" rel="noopener">WhatsApp +91 91481 23001</a>
+        <a href="https://instagram.com/thehebronhouse" target="_blank" rel="noopener">Instagram</a>
+      </p>
+      <p>Launch prices till 31 December 2026. Shipping is charged separately.<br>© 2026 House of Hebron</p>
+    </div>
+  </footer>
+
+  <a class="float-wa" href="https://wa.me/919148123001?text=Hi%21%20I%20found%20you%20on%20thehebronhouse.com." target="_blank" rel="noopener" aria-label="Message us on WhatsApp">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.3.8 3.2.7a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.5-.3Z"/></svg>
+  </a>
+</body>
+</html>
